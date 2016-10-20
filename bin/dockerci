@@ -21,10 +21,10 @@ wrapped_command="docker-compose -p \"${projectname}\" -f ${package_dir}/docker-c
 # Use the projects folder name as servername
 DOCKER_CI_SERVERNAME=${projectname}
 
-# Default port for dockerflow
+# Default port for dockerci
 DOCKER_CI_PORT=8080
 
-# Use Development context if Flow Context is not set
+# Use Development context if CI Context is not set
 DOCKER_CI_CONTEXT=${CI_ENV:=Development}
 
 # Replace the markers in the merge config file
@@ -45,7 +45,7 @@ echo "###"
 echo "### DockerCI is now running action '${action}'"
 echo "####"
 
-# Wrap docker-compose command to use config from package, passing Flow context on run action
+# Wrap docker-compose command to use config from package, passing CI context on run action
 if [ "$action" = "run" ]; then
 	${wrapped_command} $1 --rm -e CI_ENV=${DOCKER_CI_CONTEXT} ${*:2}
 else
