@@ -1,0 +1,22 @@
+{
+	"name": "huntingdeveloper/dockerci",
+	"description": "Docker Compose structure to quickly startup CodeIgniter Framework projects",
+	"keywords": [
+		"dockerci",
+		"docker codeigniter",
+		"docker",
+		"ci",
+		"codeigniter"
+	],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Man Math",
+			"email": "huntingdeveloper@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"bin": [
+		"bin/dockerci"
+	]
+}
