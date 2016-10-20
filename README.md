@@ -1,8 +1,8 @@
-# Dockerflow helps you developing Flow Framework and Neos CMS projects
+# DockerCI helps you developing CodeIgniter Framework projects
 
 [![](https://images.microbadger.com/badges/image/sebobo/shel.dockerflow.svg)](https://microbadger.com/images/sebobo/shel.dockerflow "Get your own image badge on microbadger.com")
 
-DockerFlow creates the necessary Docker containers (webserver, database, php, mail, redis, elasticsearch, couchdb)
+DockerCI creates the necessary Docker containers (webserver, database, php, mail, redis, elasticsearch, couchdb)
 to run your Flow Framework or Neos CMS project. The package provides a wrapper script in `bin/dockerflow`
 which simplifies the handling of docker and does all the configuration necessary.
 
@@ -77,24 +77,24 @@ This will show the running containers. The `data` container can be inactive to d
 
 # Tips & Tricks
 
-## Using different FLOW_CONTEXT
+## Using different CI_ENV
 
-    FLOW_CONTEXT=Production bin/dockerflow up -d
+    CI_ENV=Production bin/dockerflow up -d
 
 Dockerflow also setup a sub-context for testing depends on the current context you are running. In the above example,
 it would be `Production/Testing`. Anyway, you can only use the parent context with the `bin/dockerflow` command. So when
 there is a need to execute command for the testing context, you need to first get into `app` container and then call the
 command prefixed by the context variable.
 
-    FLOW_CONTEXT=Production bin/dockerflow up -d
+    CI_ENV=Production bin/dockerflow up -d
     bin/dockerflow run app /bin/bash
-    FLOW_CONTEXT=Production/Testing ./flow doctrine:migrate
+    CI_ENV=Production/Testing ./flow doctrine:migrate
 
 ## Running flow commands
 
     bin/dockerflow run app ./flow help
 
-    FLOW_CONTEXT=Production bin/dockerflow run app ./flow flow:cache:flush --force
+    CI_ENV=Production bin/dockerflow run app ./flow flow:cache:flush --force
 
 ## Keep Flow caches in the container to improve performance
 

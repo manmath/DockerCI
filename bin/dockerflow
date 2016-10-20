@@ -4,7 +4,7 @@
 command -v docker >/dev/null 2>&1 || { echo "docker is not installed. Aborting." >&2; exit 1; }
 command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose is not installed. Aborting." >&2; exit 1; }
 
-package_dir="Packages/Libraries/shel/dockerflow"
+package_dir="vendor/huntingdeveloper/dockerci"
 config_dir="${package_dir}/Configuration"
 export HOST_USER_ID="${UID}"
 
@@ -19,17 +19,17 @@ projectname=`echo ${projectname} | tr '[A-Z]' '[a-z]'`
 wrapped_command="docker-compose -p \"${projectname}\" -f ${package_dir}/docker-compose.yml"
 
 # Use the projects folder name as servername
-DOCKER_FLOW_SERVERNAME=${projectname}
+DOCKER_CI_SERVERNAME=${projectname}
 
 # Default port for dockerflow
-DOCKER_FLOW_PORT=8080
+DOCKER_CI_PORT=8080
 
 # Use Development context if Flow Context is not set
-DOCKER_FLOW_CONTEXT=${FLOW_CONTEXT:=Development}
+DOCKER_CI_CONTEXT=${CI_ENV:=Development}
 
 # Replace the markers in the merge config file
-sed -e "s/DOCKER_FLOW_SERVERNAME/test.${DOCKER_FLOW_SERVERNAME}/g;s/DOCKER_FLOW_CONTEXT/${DOCKER_FLOW_CONTEXT}\/Testing/g" ${config_dir}/Web/nginx_vhost.conf > ${config_dir}/Web/nginx_vhost_merged.conf
-sed -e "s/DOCKER_FLOW_SERVERNAME/${DOCKER_FLOW_SERVERNAME} *.${DOCKER_FLOW_SERVERNAME}/g;s/DOCKER_FLOW_CONTEXT/${DOCKER_FLOW_CONTEXT}/g" ${config_dir}/Web/nginx_vhost.conf >> ${config_dir}/Web/nginx_vhost_merged.conf
+sed -e "s/DOCKER_CI_SERVERNAME/test.${DOCKER_CI_SERVERNAME}/g;s/DOCKER_CI_CONTEXT/${DOCKER_CI_CONTEXT}\/Testing/g" ${config_dir}/Web/nginx_vhost.conf > ${config_dir}/Web/nginx_vhost_merged.conf
+sed -e "s/DOCKER_CI_SERVERNAME/${DOCKER_CI_SERVERNAME} *.${DOCKER_CI_SERVERNAME}/g;s/DOCKER_CI_CONTEXT/${DOCKER_CI_CONTEXT}/g" ${config_dir}/Web/nginx_vhost.conf >> ${config_dir}/Web/nginx_vhost_merged.conf
 
 # Make sure all entrypoint scripts are executable
 chmod +x ${package_dir}/Scripts/EntryPoint/*.sh
@@ -39,15 +39,15 @@ touch ${config_dir}/Web/ip_address.txt
 
 echo "####"
 echo "### Project name    : ${projectname}"
-echo "### FLOW_CONTEXT    : ${DOCKER_FLOW_CONTEXT}"
-echo "### Testing context : ${DOCKER_FLOW_CONTEXT}/Testing"
+echo "### CI_ENV          : ${DOCKER_CI_CONTEXT}"
+echo "### Testing context : ${DOCKER_CI_CONTEXT}/Testing"
 echo "###"
-echo "### DockerFlow is now running action '${action}'"
+echo "### DockerCI is now running action '${action}'"
 echo "####"
 
 # Wrap docker-compose command to use config from package, passing Flow context on run action
 if [ "$action" = "run" ]; then
-	${wrapped_command} $1 --rm -e FLOW_CONTEXT=${DOCKER_FLOW_CONTEXT} ${*:2}
+	${wrapped_command} $1 --rm -e CI_ENV=${DOCKER_CI_CONTEXT} ${*:2}
 else
 	${wrapped_command} $*
 fi
@@ -58,7 +58,7 @@ if [ "$action" = "up" ]; then
 	${wrapped_command} run --rm app /entrypoint.sh
 
 	# Print information about running app container
-	used_port=`${wrapped_command} port web ${DOCKER_FLOW_PORT} | sed 's/^.*\:\([0-9]*\).*$/\1/g'`
+	used_port=`${wrapped_command} port web ${DOCKER_CI_PORT} | sed 's/^.*\:\([0-9]*\).*$/\1/g'`
 	echo "####"
 	echo "### Done! Your app is running here  : ${projectname}:${used_port}"
 	echo "### Testing context is running here : test.${projectname}:${used_port}"
