@@ -1,7 +1,7 @@
 # Pull base image
 FROM ubuntu:16.04
 
-MAINTAINER Man Math <huntingdeveloper@gmail.com>
+MAINTAINER Man Math <manmath4@gmail.com>
 
 # Set the locales
 RUN locale-gen en_US.UTF-8 en_GB.UTF-8 de_DE.UTF-8 es_ES.UTF-8 fr_FR.UTF-8 it_IT.UTF-8 km_KH sv_SE.UTF-8
