@@ -1,4 +1,6 @@
-# DockerCI helps you developing CodeIgniter Framework projects
+# Overview
+
+DockerCI helps you developing CodeIgniter PHP Framework projects
 
 [![](https://images.microbadger.com/badges/image/sebobo/shel.dockerflow.svg)](https://microbadger.com/images/sebobo/shel.dockerflow "Get your own image badge on microbadger.com")
 
@@ -23,7 +25,7 @@ We use docker-compose to do all the automatic configuration:
     http://docs.docker.com/compose/install/ (tested with docker-compose v1.5 - v1.6)
 
 The repository contains a Dockerfile which will automatically be built in the
-[docker hub](https://registry.hub.docker.com/u/huntingdeveloper/dockerci/) after each change
+[docker hub](https://registry.hub.docker.com/u/manmath/dockerci/) after each change
 and used by docker-compose to build the necessary containers.
 
 ## On a Mac or Windows
@@ -38,7 +40,7 @@ Add `huntingdeveloper/dockerci` as dev dependency in your composer, using the la
 *Example*:
 
 ```
-composer require --dev huntingdeveloper/dockerci 1.0.*
+composer require --dev manmath/dockerci 1.0.*
 ```
 
 ## Run dockerci
