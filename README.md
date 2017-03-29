@@ -35,7 +35,7 @@ Feel free to try it out and let us know if you cannot wait.
 
 ## Install dockerci into your distribution
 
-Add `huntingdeveloper/dockerci` as dev dependency in your composer, using the latest stable release is highly recommended.
+Add `manmath/dockerci` as dev dependency in your composer, using the latest stable release is highly recommended.
 
 *Example*:
 

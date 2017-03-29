@@ -4,7 +4,7 @@
 command -v docker >/dev/null 2>&1 || { echo "docker is not installed. Aborting." >&2; exit 1; }
 command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose is not installed. Aborting." >&2; exit 1; }
 
-package_dir="vendor/huntingdeveloper/dockerci"
+package_dir="vendor/manmath/dockerci"
 config_dir="${package_dir}/Configuration"
 export HOST_USER_ID="${UID}"
 
