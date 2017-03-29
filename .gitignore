@@ -1,6 +1,3 @@
-*/config/development
-*/logs/log-*.php
-!*/logs/index.html
-*/cache/*
-!*/cache/index.html
-!*/cache/.htaccess
+/config/web/.nginx_default_merged.conf
+/config/web/.nginx_default_test_merged.conf
+/config/web/ip_address.txt

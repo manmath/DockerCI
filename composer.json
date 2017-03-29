@@ -1,6 +1,6 @@
 {
-	"name": "huntingdeveloper/dockerci",
-	"description": "Docker Compose structure to quickly startup CodeIgniter Framework projects",
+	"name": "manmath/dockerci",
+	"description": "Docker Compose structure to quickly startup CodeIgniter PHP Framework projects",
 	"keywords": [
 		"dockerci",
 		"docker codeigniter",
@@ -12,8 +12,8 @@
 	"authors": [
 		{
 			"name": "Man Math",
-			"email": "huntingdeveloper@gmail.com",
-			"role": "Developer"
+			"email": "manmath4@gmail.com",
+			"role": "Senior Web Developer"
 		}
 	],
 	"bin": [
