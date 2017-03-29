@@ -5,7 +5,7 @@ command -v docker >/dev/null 2>&1 || { echo "docker is not installed. Aborting."
 command -v docker-compose >/dev/null 2>&1 || { echo "docker-compose is not installed. Aborting." >&2; exit 1; }
 
 package_dir="vendor/manmath/dockerci"
-config_dir="${package_dir}/Configuration"
+config_dir="${package_dir}/config"
 export HOST_USER_ID="${UID}"
 
 action=$1
@@ -25,17 +25,17 @@ DOCKER_CI_SERVERNAME=${projectname}
 DOCKER_CI_PORT=8080
 
 # Use Development context if CI Context is not set
-DOCKER_CI_CONTEXT=${CI_ENV:=Development}
+DOCKER_CI_CONTEXT=${CI_ENV:=development}
 
 # Replace the markers in the merge config file
-sed -e "s/DOCKER_CI_SERVERNAME/test.${DOCKER_CI_SERVERNAME}/g;s/DOCKER_CI_CONTEXT/${DOCKER_CI_CONTEXT}\/Testing/g" ${config_dir}/Web/nginx_vhost.conf > ${config_dir}/Web/nginx_vhost_merged.conf
-sed -e "s/DOCKER_CI_SERVERNAME/${DOCKER_CI_SERVERNAME} *.${DOCKER_CI_SERVERNAME}/g;s/DOCKER_CI_CONTEXT/${DOCKER_CI_CONTEXT}/g" ${config_dir}/Web/nginx_vhost.conf >> ${config_dir}/Web/nginx_vhost_merged.conf
+sed -e "s~DOCKER_CI_SERVERNAME~${DOCKER_CI_SERVERNAME} *.${DOCKER_CI_SERVERNAME}~g;s~DOCKER_CI_CONTEXT~${DOCKER_CI_CONTEXT}~g" ${config_dir}/web/nginx_default.conf > ${config_dir}/web/.nginx_default_merged.conf
+sed -e "s~DOCKER_CI_SERVERNAME~test.${DOCKER_CI_SERVERNAME}~g;s~DOCKER_CI_CONTEXT~${DOCKER_CI_CONTEXT}/Testing~g" ${config_dir}/web/nginx_default.conf > ${config_dir}/web/.nginx_default_test_merged.conf
 
 # Make sure all entrypoint scripts are executable
-chmod +x ${package_dir}/Scripts/EntryPoint/*.sh
+chmod +x ${package_dir}/scripts/entrypoint/*.sh
 
 # Create placeholder for storing web ip
-touch ${config_dir}/Web/ip_address.txt
+touch ${config_dir}/web/ip_address.txt
 
 echo "####"
 echo "### Project name    : ${projectname}"
@@ -57,10 +57,8 @@ if [ "$action" = "up" ]; then
 	${wrapped_command} run --rm -e PROJECT_NAME=${projectname} web /entrypoint.sh
 	${wrapped_command} run --rm app /entrypoint.sh
 
-	# Print information about running app container
-	used_port=`${wrapped_command} port web ${DOCKER_CI_PORT} | sed 's/^.*\:\([0-9]*\).*$/\1/g'`
 	echo "####"
-	echo "### Done! Your app is running here  : ${projectname}:${used_port}"
-	echo "### Testing context is running here : test.${projectname}:${used_port}"
+	echo "### Done! Your app is running here  : ${projectname}"
+	echo "### Testing context is running here : test.${projectname}"
 	echo "####"
 fi

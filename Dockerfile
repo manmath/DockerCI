@@ -24,30 +24,30 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     imagemagick \
     ghostscript \
     sendmail \
-    php7.0-fpm \
     php7.0-cli \
+    php7.0-curl \
+    php7.0-sqlite3 \
+    php7.0-imagick \
+    php7.0-fpm \
     php7.0-mysql \
     php7.0-gd \
     php7.0-mbstring \
+    php7.0-soap \
     php7.0-xml \
-    php7.0-curl \
-    php7.0-ldap \
-    php7.0-sqlite3 \
-    php7.0-imagick \
-    php7.0-redis \
     php7.0-xdebug \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Set workdir to project root
 WORKDIR /var/www
 
-# Copy configuration files for php
-COPY Configuration/App/php.ini      Configuration/App/php-fpm.conf /etc/php/7.0/fpm/
-COPY Configuration/App/www.conf     /etc/php/7.0/fpm/pool.d/
-COPY Configuration/App/php-cli.ini  /etc/php/7.0/cli/php.ini
+# Copy config files for php
+COPY config/app/php.ini      /etc/php/7.0/fpm/
+COPY config/app/php-fpm.conf /etc/php/7.0/fpm/
+COPY config/app/php-cli.ini  /etc/php/7.0/cli/
+COPY config/app/www.conf     /etc/php/7.0/fpm/pool.d/
 
 # Entry point script which wraps all commands for app container
-COPY Scripts/EntryPoint/app.sh /entrypoint.sh
+COPY scripts/entrypoint/app.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 

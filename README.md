@@ -78,14 +78,14 @@ This will show the running containers. The `data` container can be inactive to d
 
 ## Using different CI_ENV
 
-    CI_ENV=Production bin/dockerci up -d
+    CI_ENV=production bin/dockerci up -d
 
 DockerCI also setup a sub-context for testing depends on the current context you are running. In the above example,
-it would be `Production/Testing`. Anyway, you can only use the parent context with the `bin/dockerci` command. So when
+it would be `production/testing`. Anyway, you can only use the parent context with the `bin/dockerci` command. So when
 there is a need to execute command for the testing context, you need to first get into `app` container and then call the
 command prefixed by the context variable.
 
-    CI_ENV=Production bin/dockerci up -d
+    CI_ENV=production bin/dockerci up -d
     bin/dockerci run app /bin/bash
 
 ## Using MailHog to test mailing
@@ -107,7 +107,7 @@ SERVICE can currently be `app`, `web`, `data` or `db`.
 
 As of current docker doesn't support bi-directional link, you cannot access web container from app container.
 But in some case you will need this connection. For example in behat tests without selenium, you need the url of
-your site in `Testing` context while running the tests has to be done inside the `app` container.
+your site in `testing` context while running the tests has to be done inside the `app` container.
 
 DockerCI adds additional script after starting all containers to fetch the IP address of web container and
 append it to `/etc/hosts` inside app container as below:
@@ -126,7 +126,7 @@ for example, is to access the databases inside the container from MySQL Workbenc
 To be able to do that, we have mapped database port inside the container (which is `3306`) to your
 host machine through `3307` port.
 
-![Screenshot of MySQL Workbench interface](/Docs/MySQL-Workbench.png "MySQL Workbench interface")
+![Screenshot of MySQL Workbench interface](/docs/mysal-workbench.png "MySQL Workbench interface")
 
 ## Attach to a running service
 
