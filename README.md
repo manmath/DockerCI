@@ -126,7 +126,7 @@ for example, is to access the databases inside the container from MySQL Workbenc
 To be able to do that, we have mapped database port inside the container (which is `3306`) to your
 host machine through `3307` port.
 
-![Screenshot of MySQL Workbench interface](/docs/mysal-workbench.png "MySQL Workbench interface")
+![Screenshot of MySQL Workbench interface](/docs/mysql-workbench.png "MySQL Workbench interface")
 
 ## Attach to a running service
 
