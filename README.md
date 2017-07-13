@@ -2,11 +2,10 @@
 
 DockerCI helps you developing CodeIgniter PHP Framework projects
 
-[![](https://images.microbadger.com/badges/image/sebobo/shel.dockerflow.svg)](https://microbadger.com/images/sebobo/shel.dockerflow "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/manmath/dockerci.svg)](https://microbadger.com/images/manmath/dockerci "Get your own image badge on microbadger.com")
 
-DockerCI creates the necessary Docker containers (webserver, database, php, mail)
-to run your CodeIgniter Framework project. The package provides a wrapper script in `bin/dockerci`
-which simplifies the handling of docker and does all the configuration necessary.
+DockerCI creates the necessary Docker containers (webserver, database, php, mail) to run your CodeIgniter Framework project.
+The package provides a wrapper script in `bin/dockerci` which simplifies the handling of docker and does all the configuration necessary.
 
 We created this package to make development on CodeIgniter Framework projects easier and
 to create a simple reusable package which can easily be maintained and serves well for the standard project.
@@ -16,17 +15,16 @@ Contributions and feedback are very welcome.
 
 ## Install docker
 
-    https://docs.docker.com/installation/ (tested with docker v1.9 - v1.12)
+    https://docs.docker.com/installation/ (tested with docker v1.9 - v17.03)
 
 ## Install docker-compose
 
 We use docker-compose to do all the automatic configuration:
 
-    http://docs.docker.com/compose/install/ (tested with docker-compose v1.5 - v1.6)
+    http://docs.docker.com/compose/install/ (tested with docker-compose v1.5 - v1.11.2)
 
-The repository contains a Dockerfile which will automatically be built in the
-[docker hub](https://registry.hub.docker.com/u/manmath/dockerci/) after each change
-and used by docker-compose to build the necessary containers.
+The repository contains a Dockerfile which will automatically be built in the [docker hub](https://hub.docker.com/r/manmath/dockerci/)
+after each change and used by docker-compose to build the necessary containers.
 
 ## On a Mac or Windows
 
