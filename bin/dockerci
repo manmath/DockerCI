@@ -29,7 +29,7 @@ DOCKER_CI_CONTEXT=${CI_ENV:=development}
 
 # Replace the markers in the merge config file
 sed -e "s~DOCKER_CI_SERVERNAME~${DOCKER_CI_SERVERNAME} *.${DOCKER_CI_SERVERNAME}~g;s~DOCKER_CI_CONTEXT~${DOCKER_CI_CONTEXT}~g" ${config_dir}/web/nginx_default.conf > ${config_dir}/web/.nginx_default_merged.conf
-sed -e "s~DOCKER_CI_SERVERNAME~test.${DOCKER_CI_SERVERNAME}~g;s~DOCKER_CI_CONTEXT~${DOCKER_CI_CONTEXT}/Testing~g" ${config_dir}/web/nginx_default.conf > ${config_dir}/web/.nginx_default_test_merged.conf
+sed -e "s~DOCKER_CI_SERVERNAME~test.${DOCKER_CI_SERVERNAME}~g;s~DOCKER_CI_CONTEXT~${DOCKER_CI_CONTEXT}/testing~g" ${config_dir}/web/nginx_default.conf > ${config_dir}/web/.nginx_default_test_merged.conf
 
 # Make sure all entrypoint scripts are executable
 chmod +x ${package_dir}/scripts/entrypoint/*.sh
@@ -40,7 +40,7 @@ touch ${config_dir}/web/ip_address.txt
 echo "####"
 echo "### Project name    : ${projectname}"
 echo "### CI_ENV          : ${DOCKER_CI_CONTEXT}"
-echo "### Testing context : ${DOCKER_CI_CONTEXT}/Testing"
+echo "### Testing context : ${DOCKER_CI_CONTEXT}/testing"
 echo "###"
 echo "### DockerCI is now running action '${action}'"
 echo "####"

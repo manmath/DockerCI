@@ -1,5 +1,5 @@
 # Pull base image
-FROM ubuntu:16.04
+FROM ubuntu:16.10
 
 MAINTAINER Man Math <manmath4@gmail.com>
 
@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     php7.0-mbstring \
     php7.0-soap \
     php7.0-xml \
+    php7.0-intl \
     php7.0-xdebug \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
