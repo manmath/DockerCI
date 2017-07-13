@@ -1,8 +1,14 @@
 # Overview
 
-DockerCI helps you developing CodeIgniter PHP Framework projects
+Docker Compose structure to quickly startup CodeIgniter PHP Framework projects.
 
-[![](https://images.microbadger.com/badges/image/manmath/dockerci.svg)](https://microbadger.com/images/manmath/dockerci "Get your own image badge on microbadger.com")
+[![MicroBadger](https://images.microbadger.com/badges/image/manmath/dockerci.svg)](https://microbadger.com/images/manmath/dockerci "Get your own image badge on microbadger.com")
+[![Docker Image](https://img.shields.io/badge/docker-image-blue.svg?style=gradient-radius)](https://hub.docker.com/r/manmath/dockerci/)
+[![Stable Release](https://img.shields.io/badge/stable-1.0.2-green.svg?style=gradient-radius)](https://packagist.org/packages/manmath/dockerci)
+[![Changelog](https://img.shields.io/badge/changelog-1.0.2-green.svg?style=gradient-radius)](https://github.com/manmath/DockerCI/blob/master/CHANGELOG.md)
+[![CodeIgniter](https://img.shields.io/badge/CodeIgniter-3.1.5-orange.svg?style=gradient-radius)](https://codeigniter.com/)
+[![DockerCI](https://img.shields.io/badge/DockerCI-master-yellow.svg?style=gradient-radius)](https://github.com/manmath/DockerCI)
+[![MIT License](https://img.shields.io/badge/license-MIT-yellow.svg?style=gradient-radius)](https://github.com/manmath/DockerCI/blob/master/LICENSE.txt)
 
 DockerCI creates the necessary Docker containers (webserver, database, php, mail) to run your CodeIgniter Framework project.
 The package provides a wrapper script in `bin/dockerci` which simplifies the handling of docker and does all the configuration necessary.
